@@ -35,6 +35,9 @@ class MarkdownToHtmlTask extends DefaultTask {
     @Optional @Input String inputEncoding = StandardCharsets.UTF_8.displayName()
     @Optional @Input String outputEncoding = StandardCharsets.UTF_8.displayName()
 
+    @Optional @Input File header
+    @Optional @Input File footer
+
     @Optional @Input Boolean hardwraps
     @Optional @Input Boolean autoLinks
     @Optional @Input Boolean abbreviations
@@ -65,7 +68,9 @@ class MarkdownToHtmlTask extends DefaultTask {
             sourceDir     : sourceDir,
             outputDir     : outputDir,
             inputEncoding : inputEncoding,
-            outputEncoding: outputEncoding
+            outputEncoding: outputEncoding,
+            header:         header,
+            footer:         footer
         ]
         worker.process(Conversion.MARKDOWN, options, mergeConfiguration())
     }
